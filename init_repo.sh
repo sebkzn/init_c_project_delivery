@@ -161,17 +161,14 @@ if git clone -q $repo_url; then
     echo "repository created with basic architecture"
     echo -n "Do you want to push your repository? [y/n]: "
     read ans
-    case $ans in
-        y|yes|*)
-        git add .
-        git commit -m "Initial commit with Makefile, lib, include, src, and tests folders ready"
-        git push origin master
-        ;;
-        n|no)
+    if [[ $ans == n || $ans == no ]]; then
         echo "bye"
         exit 0
-        ;;
-    esac
+    else
+        git add .
+        git commit -m "Initial commit with usual project architecture"
+        git push origin master
+    fi
 else
     echo "error" >&2
     exit 84
