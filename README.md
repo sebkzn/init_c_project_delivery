@@ -1,6 +1,8 @@
 # init_c_project_delivery
 Simple bash script that creates usual folders and files for an Epitech C project.
 
+<br />
+
 Features:
 ----
 - make __include__, __lib__, __src__, __tests__ and __bonus__ directories
