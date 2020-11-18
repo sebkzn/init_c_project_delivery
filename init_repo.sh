@@ -62,44 +62,30 @@ CC        = gcc -g
 
 RM        = rm -f
 
-SRCS      = $(wildcard ./*.c) $(wildcard ./src/*.c) $(wildcard ./src/*/*.c)
-
-T_SRCS    = $(wildcard ./tests/*.c)
-
+SRCS      = $(wildcard ./*.c) $(wildcard ./src/*.c) $(wildcard ./src/**/*.c)
 OBJS      = $(SRCS:.c=.o)
 
-T_OBJS    = $(T_SRCS:.c=.o)
-
 CFLAGS 	  += -I ./include -Wall -Wextra
-
-LDFLAGS   += -L ./lib/my -lmy
-T_LDFLAGS += -lcriterion $(LDFLAGS)
+LDFLAGS   = -L ./lib/my
+LDLIBS    = -lmy
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	 $(MAKE) -C ./lib/my
-	 $(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+	 $(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) $(T_OBJS)
 	$(MAKE) -C ./lib/my clean
 
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) unit_tests
 	$(MAKE) -C ./lib/my fclean
 
 re: fclean all
 
-unit_tests: re $(T_OBJS)
-	$(CC) $(OBJS) $(T_OBJS) -o unit_tests --coverage $(T_LDFLAGS)
-
-run_tests: all
-	./unit_tests
-
-.PHONY: all clean fclean re unit_tests run_tests
+.PHONY: all clean fclean re
 EOF
     sed -i "s/binary_name/${binary_name}/g" Makefile
     sed -i "s/project_name/${project_name}/g" Makefile
@@ -115,9 +101,11 @@ bin/
 ###files##
 binary_name
 a.out
-unit_tests
 *.a
 *.o
+unit_tests
+*.gcno
+*.gcda
 *~
 \#*\#
 EOF
