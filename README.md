@@ -8,7 +8,7 @@ Features:
 - make __include__, __lib__, __src__, __tests__ and __bonus__ directories
 - copy your __lib/my__ folder and paste it to the repository, then copy and paste my.h file in the __include__ directory
 - make a minimal __main.c__ file with a correct header
-- make a __Makefile__ with an __unit_tests rule__ and a correct header
+- make a __Makefile__ with a correct header
 - make a minimal __.gitignore__ file
 - push to origin/master the initialized repository
 
