@@ -14,7 +14,7 @@ Features:
 
 
 ## Usage:
-`bash init_repo.sh [-l|--lib] <path_to_libmy> [-b|--binary] <binary_name> <repository_url>`
+`bash init_repo.sh [-l|--lib] <absolute_path_to_libmy> [-b|--binary] <binary_name> <repository_url>`
 
 
 ### Example:
